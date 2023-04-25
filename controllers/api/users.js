@@ -1,6 +1,7 @@
 //* Request handler Logic
 const User = require('../../models/user');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 //* /*-- Helper Functions --*/
 function createJWT(user) {
@@ -26,7 +27,26 @@ async function create(req, res) {
 }
 
 
+async function login(req, res) {
+    try {
+        // find user in db
+      const user = await User.findOne({ email: req.body.email });
+      // check if we found an user
+      if (!user) throw new Error();
+      // compare the password to hashed password
+      const match = await bcrypt.compare(req.body.password, user.password);
+      // check is password matched
+      if (!match) throw new Error();
+      // send back a new token with the user data in the payload
+      res.json( createJWT(user) );
+    } catch {
+      res.status(400).json('Bad Credentials');
+    }
+  }
+
+
 
 module.exports = {
     create,
+    login
 }

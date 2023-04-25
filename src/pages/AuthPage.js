@@ -9,7 +9,7 @@ function AuthPage({setUser}) {
 
             <SignUpForm setUser={setUser}/>
 
-            <LoginForm />
+            <LoginForm setUser={setUser}/>
         </div>
     )
 }

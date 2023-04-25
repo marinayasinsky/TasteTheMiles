@@ -45,8 +45,14 @@ async function login(req, res) {
   }
 
 
+async function checkToken(req, res) {
+    console.log(req.user);
+    res.json(req.exp)
+}
+
 
 module.exports = {
     create,
-    login
+    login,
+    checkToken
 }

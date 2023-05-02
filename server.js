@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path'); // node module
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const { ensureLoggedIn } = require('connect-ensure-login');
 
 const app = express();
 // development port: 3001
@@ -26,6 +27,8 @@ app.use(require('./config/checkToken'));
 
 // * All other routes
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/trainingPlans',ensureLoggedIn,  require('./routes/api/trainingPlans'));
+app.use('/api/workouts', ensureLoggedIn, require('./routes/api/workouts'));
 
 
 

@@ -27,7 +27,7 @@ app.use(require('./config/checkToken'));
 
 // * All other routes
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/trainingPlans',ensureLoggedIn,  require('./routes/api/trainingPlans'));
+app.use('/api/trainingPlans',  require('./routes/api/trainingPlans'));
 app.use('/api/workouts', ensureLoggedIn, require('./routes/api/workouts'));
 
 

@@ -15,6 +15,8 @@ const index = (req, res) => handleResponse(res, async () => {
 });
 
 const createTrainingPlan = (req, res) => handleResponse(res, async () => {
+console.log('req.body:', req.body)
+req.body.user = req.user._id
   const trainingPlan = await TrainingPlan.create(req.body);
   return { status: 201, data: trainingPlan };
 });

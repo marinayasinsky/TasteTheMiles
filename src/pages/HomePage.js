@@ -14,7 +14,7 @@ export default function Home() {
           Train smarter, not harder. Create a custom training plan, track your progress, and achieve your marathon goals with our app.
         </p>
         {loggedIn ? (
-          <button className="home-btn" onClick={() => navigate("/training-plans")}>View Your Training Plan</button>
+          <button className="home-btn" onClick={() => navigate("/trainingplan")}>View Your Training Plan</button>
         ) : (
           <button className="home-btn" onClick={() => navigate("/workout")}>Workout</button>
         )}

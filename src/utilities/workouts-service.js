@@ -1,24 +1,17 @@
+import * as workoutsApi from './workouts-api';
+
 const BASE_URL = '/api/workouts';
 
 async function getWorkout(id) {
-  const res = await fetch(`${BASE_URL}/${id}`);
-  return res.json();
+  return await workoutsApi.getWorkout(id);
 }
 
 async function updateWorkout(id, data) {
-  const res = await fetch(`${BASE_URL}/${id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
-  return res.json();
+  return await workoutsApi.updateWorkout(id, data);
 }
 
 async function deleteWorkout(id) {
-  const res = await fetch(`${BASE_URL}/${id}`, {
-    method: 'DELETE',
-  });
-  return res.json();
+  return await workoutsApi.deleteWorkout(id);
 }
 
 export { getWorkout, updateWorkout, deleteWorkout };

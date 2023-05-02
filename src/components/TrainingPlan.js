@@ -39,7 +39,8 @@ const TrainingPlan = () => {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
+       
+        <form>
           {trainingPlans.map((plan, index) => (
             <tr key={plan._id}>
               <td>{`Week ${plan.week}`}</td>
@@ -55,7 +56,7 @@ const TrainingPlan = () => {
               </td>
             </tr>
           ))}
-        </tbody>
+        </form>
       </table>
     </div>
   );

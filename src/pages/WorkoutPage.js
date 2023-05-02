@@ -30,13 +30,13 @@ function WorkoutPage() {
     setWorkout(null);
   };
 
-  if (!workout) {
-    return <div>Loading...</div>;
-  }
+  // if (!workout) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div>
-      <h1>Workout: {workout.name}</h1>
+      <h1>Workout: {workout?.name}</h1>
       <form onSubmit={handleFormSubmit}>
         <div>
           <label>Name:</label>

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { set} from 'mongoose';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Home from './pages/HomePage';
 import AuthPage from './pages/AuthPage';
 import TrainingPlan from './pages/TrainingPlanPage';
 import Workout from './pages/WorkoutPage';
@@ -18,9 +17,9 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/trainingplan" element={<TrainingPlan />} />
             
+            <Route path="/training-plan" element={<TrainingPlan />} />
+          
             <Route path="/workout" element={<Workout />} />
 
           {/* <Route path='/*' element={<Navigate to='/home' />} /> */}

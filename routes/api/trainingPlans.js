@@ -4,10 +4,14 @@ const trainingPlansCtrl = require('../../controllers/api/trainingPlans');
 
 
 // Routes for Training Plans
-router.get('/', trainingPlansCtrl.index);
-router.get('/:id', trainingPlansCtrl.getTrainingPlan);
-router.post('/', trainingPlansCtrl.createTrainingPlan);
-router.put('/:id', trainingPlansCtrl.updateTrainingPlan);
-router.delete('/:id', trainingPlansCtrl.deleteTrainingPlan);
+
+
+router.post('/', trainingPlansCtrl.create);
+
+router.get('/training-plan', trainingPlansCtrl.view);
+
+router.post('/training-plan/edit',trainingPlansCtrl.editWorkout);
+
+router.post('/training-plan/delete', trainingPlansCtrl.deleteWorkout);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const TrainingPlan = require('../../models/TrainingPlan');
+const TrainingPlan = require('../../models/training-plan');
 
 const handleResponse = async (res, operation) => {
   try {
@@ -22,6 +22,7 @@ req.body.user = req.user._id
 });
 
 const getTrainingPlan = (req, res) => handleResponse(res, async () => {
+  console.log("req.params.id: " + req.params.id);
   const trainingPlan = await TrainingPlan.findById(req.params.id);
   return { status: 200, data: trainingPlan };
 });

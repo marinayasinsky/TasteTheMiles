@@ -1,37 +1,58 @@
-const Workout = require('../../models/Workout');
-
-const handleResponse = async (res, operation) => {
+//* create
+async function create(req, res) {
   try {
-    const result = await operation();
-    res.status(result.status).json(result.data);
+    // creating a new workout
+    const workout = await Workout.create(req.body);
+    res.json(workout);
+
   } catch (error) {
+    console.error(error);
     res.status(400).json(error);
   }
-};
+}
 
-const index = (req, res) => handleResponse(res, async () => {
-  const workouts = await Workout.find({ user: req.user.id });
-  return { status: 200, data: workouts };
-});
+//* view
+async function view(req, res) {
+  try {
+    const workoutLogs = await Workout.find();
+    res.status(200).json(workoutLogs);
 
-const createWorkout = (req, res) => handleResponse(res, async () => {
-  const workout = await Workout.create(req.body);
-  return { status: 201, data: workout };
-});
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ msg: error.message });
+  }
+}
 
-const updateWorkout = (req, res) => handleResponse(res, async () => {
-  const updatedWorkout = await Workout.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  return { status: 200, data: updatedWorkout };
-});
+//* update
+async function editWorkout(req, res) {
+  try {
+    const { id } = req.params;
+    const workout = await Workout.findByIdAndUpdate(id, req.body, { new: true });
+    res.json(workout);
 
-const deleteWorkout = (req, res) => handleResponse(res, async () => {
-  const deletedWorkout = await Workout.findByIdAndDelete(req.params.id);
-  return { status: 200, data: deletedWorkout };
-});
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error);
+  }
+}
+
+//*delete
+// You didn't include a delete function, so I added one below:
+async function deleteWorkout(req, res) {
+  try {
+    const { id } = req.params;
+    const workout = await Workout.findByIdAndDelete(id);
+    res.json(workout);
+
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error);
+  }
+}
 
 module.exports = {
-  index,
-  createWorkout,
-  updateWorkout,
-  deleteWorkout,
+  create,
+  view,
+  editWorkout,
+  deleteWorkout
 };

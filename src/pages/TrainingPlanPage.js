@@ -1,53 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import * as trainingPlansService from '../utilities/trainingPlans-service';
-import { getTrainingPlan, deleteTrainingPlan } from '../utilities/trainingPlans-service';
+import { useLocation } from 'react-router-dom';
+import * as workoutAPI from '../../src/utilities/workout-api';
+
+function TrainingPage() {
+  const [workoutLogs, setWorkoutLogs] = useState([]);
 
 
-  
-
-
-
-function TrainingPlanPage() {
-  const [trainingPlan, setTrainingPlan] = useState(null);
-  const { id } = useParams();
-  console.log('id:', id);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const trainingPlanData = await getTrainingPlan(id);
-        console.log('Fetched training plan data:', trainingPlanData);
-        setTrainingPlan(trainingPlanData);
-      } catch (error) {
-        console.error('Error fetching training plan data:', error);
-      }
+  useEffect(function () {
+    async function fetchWorkoutLogs() {
+      const workoutLogs = await workoutAPI.view();
+      setWorkoutLogs(workoutLogs);
     }
-    fetchData();
-  }, [id]);
+    fetchWorkoutLogs();
+  }, [])
 
-  async function handleDeleteTrainingPlan() {
-    await deleteTrainingPlan(id);
-    // Redirect to the training plans list page
-    window.location = '/trainingplan';
-  }
-
-  if (!trainingPlan) {
-    return <div>Loading...</div>;
-  }
+//  try {
+//     const workoutLogs = await workoutAPI.view();
+//     console.log(workoutLogs);
+//     setWorkoutLogs(workoutLogs);
+//   } catch (error) {
+//     console.log("error")
+//   }
+// };
 
   return (
-    
-    <div > 
-      <container>
-      <h2>{trainingPlan.name}</h2>
-      <p>{trainingPlan.description}</p>
-      <p>Duration: {trainingPlan.duration}</p>
-      <p>Difficulty: {trainingPlan.difficulty}</p>
-      <button onClick={handleDeleteTrainingPlan}>Delete Training Plan</button>
-      </container>
+    <div>
+      <h1>Training Weekly Plan</h1>
+      {workoutLogs.map((workoutLog)  => {
+        console.log(workoutLog)
+        return (
+          <div key={workoutLog._id}>
+          Workout Details: 
+          <nav>
+          <a href={`/workouts/${workoutLog._id}`}>{' '}{workoutLog.distance  }</a>
+          </nav> 
+          {workoutLog.createdAt}
+          <nav>
+          <a href={`/workouts/${workoutLog._id}/edit`}>Edit</a>
+          </nav>
+          </div>
+        )
+      })}
+
     </div>
-  );
+  ) 
 }
 
-export default TrainingPlanPage;
+export default TrainingPage;

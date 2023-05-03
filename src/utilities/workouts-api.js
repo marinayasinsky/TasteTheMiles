@@ -1,29 +1,47 @@
 const BASE_URL = '/api/workouts';
 
+//* Log Workout
+export function logWorkout(workoutData) {
+  return sendRequest(BASE_URL, 'POST', workoutData);
+}
+
+//* View workouts
+export function viewWorkout() {
+  return sendRequest(`${BASE_URL}`);
+}
+
+//* Edit workouts
+export function editWorkout(workoutData) {
+  return sendRequest(`${BASE_URL}/${workoutData}/edit`);
+}
+
+
+//* Delete workouts
+export function deleteWorkout(workoutData) {
+  return sendRequest(`${BASE_URL}/${workoutData}/delete`);
+}
+
+
+  /*--- Helper Functions ---*/
+
 async function sendRequest(url, method = 'GET', payload = null) {
-  const options = { method };
-  if (payload) {
-    options.headers = { 'Content-Type': 'application/json' };
-    options.body = JSON.stringify(payload);
-  }
+    // Fetch accepts an options object as the 2nd argument
+    // used to include a data payload, set headers, etc.
+    const options = { method };
+    if (payload) {
+      options.headers = { 'Content-Type': 'application/json' };
+      options.body = JSON.stringify(payload);
+    }
 
-  const response = await fetch(url, options);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch workouts: ${response.status} ${response.statusText}`);
-  }
-  return response.json();
+    const res = await fetch(url, options);
+    // res.ok will be false if the status code set to 4xx in the controller action
+    if (res.ok) return res.json();
+    throw new Error('Bad Request');
 }
 
-async function getWorkout(id) {
-  return sendRequest(`${BASE_URL}/${id}`);
-}
+// const token = getToken();
 
-async function updateWorkout(id, data) {
-  return sendRequest(`${BASE_URL}/${id}`, 'PUT', data);
-}
-
-async function deleteWorkout(id) {
-  return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
-}
-
-export { getWorkout, updateWorkout, deleteWorkout };
+//   if (token) {
+//     options.headers = options.headers || {};
+//     options.headers.Authorization = `Bearer ${token}`;
+//   }

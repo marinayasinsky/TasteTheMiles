@@ -9,7 +9,7 @@ return sendRequest(`${BASE_URL}/saved`, 'GET')
 }
 
 export function deleteTrainingPlan(id){
-return sendRequest(`${BASE_URL}/saved/${id}`, "DELETE")
+return sendRequest(`${BASE_URL}/delete/${id}`, "DELETE")
 }
 
 export function editTrainingPlan(id, editedData){

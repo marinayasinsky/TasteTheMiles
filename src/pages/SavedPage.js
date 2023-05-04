@@ -15,10 +15,10 @@ function SavedPage() {
   }, []);
 
   //to delete 
-  const handleSubmit = async (e, trainingPlan) => {
+  const handleSubmit = async (e, trainingPlans) => {
     e.preventDefault();
     try {
-      const deletedTrainingPlan = await formAPI.deleteTrainingPlan(trainingPlan._id);
+      const deletedTrainingPlan = await formAPI.deleteTrainingPlan(trainingPlans._id);
       console.log(deletedTrainingPlan);
       const trainingPlan = await formAPI.getTrainingPlan();
       setTrainingPlan(trainingPlan);
@@ -39,12 +39,14 @@ function SavedPage() {
             <h1>
               {trainingPlan.trainingPlanName}
             </h1>
-            <ol>
-              <li>{trainingPlan.distance}</li>
-              <li>{trainingPlan.duration}</li>
-              <li>{trainingPlan.workoutType}</li>
+            <ul>
+            <span><strong>Distance:</strong> {trainingPlan.distance}</span>
+            <br/>
+           <span><strong>Duration:</strong> {trainingPlan.duration}</span>
+            <br/>
+           <span><strong>Workout Type:</strong> {trainingPlan.workoutType}</span>
               
-            </ol>
+            </ul>
             <button
               type="submit"
               value="DELETE"

@@ -29,6 +29,7 @@ function App() {
         {/* <Route path='/trainingPlans' element={ <TrainingPlanPage /> }/> */}
         <Route path = '/saved'element= {<SavedPage/>}/>
         <Route path = '/edit/:id'element= {<EditPage/>}/>
+       
       </Routes>
       </>
      : 

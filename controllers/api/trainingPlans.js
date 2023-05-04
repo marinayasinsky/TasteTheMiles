@@ -1,5 +1,7 @@
 const TrainingPlan = require('../../models/trainingPlan');
 
+
+
 //create 
 async function createTrainingPlan(req, res) {
   try {

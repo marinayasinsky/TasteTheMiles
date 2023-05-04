@@ -2,17 +2,11 @@
 
 Taste the Miles is a marathon prep app. 
 
+## Wireframe
 <img src="./src/assets/wireframe.png" alt="Portfolio Wireframe" width="500"/>
+
+##  EDR
 <img src="./src/assets/edr.png" alt="EDR" width="500"/>
-
-
-
-## Table of Contents
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation and Setup](#installation-and-setup)
-- [Future Enhancements](#future-enhancements)
-
 
 ## Features
 

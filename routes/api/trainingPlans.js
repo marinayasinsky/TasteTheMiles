@@ -1,17 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const trainingPlansCtrl = require('../../controllers/api/trainingPlans');
+const trainingPlanCtrl = require('../../controllers/api/trainingPlans');
 
 
-// Routes for Training Plans
+router.get('/saved', trainingPlanCtrl.allTrainingPlan)
+router.get('/:id', trainingPlanCtrl.getTrainingPlan)
+
+router.post('/', trainingPlanCtrl.createTrainingPlan);
 
 
-router.post('/', trainingPlansCtrl.create);
+router.put('/trainingplan/edit/:id',trainingPlanCtrl.editTrainingPlan);
 
-router.get('/training-plan', trainingPlansCtrl.view);
-
-router.post('/training-plan/edit',trainingPlansCtrl.editWorkout);
-
-router.post('/training-plan/delete', trainingPlansCtrl.deleteWorkout);
+router.delete('/trainingplan/delete', trainingPlanCtrl.deleteTrainingPlan);
 
 module.exports = router;

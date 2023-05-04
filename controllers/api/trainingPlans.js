@@ -1,46 +1,68 @@
-const TrainingPlan = require('../../models/training-plan');
+const TrainingPlan = require('../../models/trainingPlan');
 
-const handleResponse = async (res, operation) => {
+//create 
+async function createTrainingPlan(req, res) {
   try {
-    const result = await operation();
-    res.status(result.status).json(result.data);
+    const trainingPlan = await TrainingPlan.create(req.body);
+    console.log(trainingPlan);
   } catch (error) {
-    res.status(400).json(error);
+    console.error(error);
   }
-};
+}
 
-const index = (req, res) => handleResponse(res, async () => {
-  const trainingPlans = await TrainingPlan.find();
-  return { status: 200, data: trainingPlans };
-});
+//get 
+async function getTrainingPlan(req,res){
+  try {
+    const trainingPlan = await TrainingPlan.findById(req.params.id)
+    console.log(trainingPlan);
+    res.json(trainingPlan)
+  } catch (error) {
+    console.error(error)
+  }
+}
 
-const createTrainingPlan = (req, res) => handleResponse(res, async () => {
-console.log('req.body:', req.body)
-req.body.user = req.user._id
-  const trainingPlan = await TrainingPlan.create(req.body);
-  return { status: 201, data: trainingPlan };
-});
+//EDIT 
+    async function editTrainingPlan(req,res){
+      console.log("sending", req.body);
+      try {
+        const trainingPlan = await TrainingPlan.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        //the mongoose method is not working as expected, it is updating but not returning the updated  right away even with await
+        //Now, instead of going through this method, we are getting the freshly made data from getfrom mongo 
+    
+        // the mongo collection is being updated, but not returning the updated 
+        // is findByIdAndUpdate deprecated? im seeing updateOne being used online
+        console.log("returning", trainingPlan);
+        res.json(trainingPlan)
+      } catch (error) {
+        console.error(error)
+      }
+    }
 
-const getTrainingPlan = (req, res) => handleResponse(res, async () => {
-  console.log("req.params.id: " + req.params.id);
-  const trainingPlan = await TrainingPlan.findById(req.params.id);
-  return { status: 200, data: trainingPlan };
-});
+    //delete 
+async function deleteTrainingPlan(req,res){
+  try {
+      const trainingPlan = await TrainingPlan.findByIdAndRemove(req.params.id);
+      console.log(trainingPlan + "is deleted");
+      res.json(trainingPlan)
+  } catch (error) {
+      console.error(error)
+  }
+}
 
-const updateTrainingPlan = (req, res) => handleResponse(res, async () => {
-  const trainingPlan = await TrainingPlan.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  return { status: 200, data: trainingPlan };
-});
-
-const deleteTrainingPlan = (req, res) => handleResponse(res, async () => {
-  const deletedTrainingPlan = await TrainingPlan.findByIdAndDelete(req.params.id);
-  return { status: 200, data: deletedTrainingPlan };
-});
+//get all
+async function allTrainingPlan(req,res){
+try {
+    const trainingPlan = await TrainingPlan.find({})
+    res.json(trainingPlan)
+} catch (error) {
+    console.error(error)
+}
+}
 
 module.exports = {
-  index,
   createTrainingPlan,
   getTrainingPlan,
-  updateTrainingPlan,
+  editTrainingPlan,
+  allTrainingPlan,
   deleteTrainingPlan,
 };

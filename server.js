@@ -27,9 +27,8 @@ app.use(require('./config/checkToken'));
 
 // * All other routes
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/trainingPlans',  require('./routes/api/trainingPlans'));
-app.use('/api/workouts', ensureLoggedIn, require('./routes/api/workouts'));
-
+app.use('/api/trainingPlans', require('./routes/api/trainingPlans'));
+app.use('/api/users/login', require('./routes/api/users'))
 
 
 // Put API routes here, before the "catch all" route

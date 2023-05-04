@@ -1,4 +1,5 @@
-
+import { Link } from 'react-router-dom';
+      
       function Homepage() {
         return (
           <div>
@@ -6,7 +7,9 @@
             <br/>
            
             <h3>Running is a great way to get in shape and stay in shape.  </h3>
-          
+            <Link to="/create">
+        <button>Create Your Training Plan</button>
+             </Link>
             </div>
            
          

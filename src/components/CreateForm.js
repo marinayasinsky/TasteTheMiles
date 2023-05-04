@@ -51,7 +51,7 @@ export default function CreateForm() {
           <input type="number" name="duration" value={trainingPlanData.duration} onChange={handleChange} />
        
         
-         <button type="submit">Create Training Plan</button>
+         <button type="submit">Create Workout</button>
                 </form>
             </div>
     </div>

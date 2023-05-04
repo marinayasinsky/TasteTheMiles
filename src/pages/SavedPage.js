@@ -29,7 +29,7 @@ function SavedPage() {
 
   return (
     <div>
-      <h1>Saved Training Plans</h1>
+      <h1>Training Plans</h1>
       <button>
         <a href="/create" id="link-new">Add Workout</a>
       </button>

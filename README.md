@@ -1,6 +1,9 @@
 # Taste the Miles
 
-Taste the Miles is a fun and engaging app for marathon runners, helping them prepare for their races by providing personalized training plans and nutrition advice.
+Taste the Miles is a marathon prep app. 
+
+
+![EDR Diagram](assets/edr.png)
 
 ## Table of Contents
 - [Features](#features)
@@ -12,9 +15,8 @@ Taste the Miles is a fun and engaging app for marathon runners, helping them pre
 ## Features
 
 - User Authentication (Sign-up, Log in & Log out)
-- User Profile (Display and edit basic information like name, email, and fitness level)
-- Training Plan Generation (Generate a simple, static training plan based on the user's fitness level and target marathon time)
-- Nutrition Tips Page (General nutrition advice and guidelines for marathon training)
+- Creates Workouts for Training Plan 
+
 
 
 ## Technologies Used
@@ -32,11 +34,11 @@ Taste the Miles is a fun and engaging app for marathon runners, helping them pre
 - [GitHub Repository](https://github.com/marinayasinsky/TasteTheMiles)
 
 ## Future Enhancements
+- Nutrition Tips Page (General nutrition advice and guidelines for marathon training)
 - Expand training modules for different race distances
 - Enhance nutrition guidance with more in-depth meal planning, recipes, and grocery lists
 - Integrate with additional wearable devices and fitness apps
 - Add a training resources library
 - Implement gamification and achievements
 
-# TasteTheMiles
-# TasteTheMiles
+

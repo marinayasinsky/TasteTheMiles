@@ -17,9 +17,9 @@ export default function CreateForm() {
         try {
             const userTrainingPlanData = {
     
-              distance: userTrainingPlanData.distance,
-              duration: userTrainingPlanData.duration,
-              workoutType: userTrainingPlanData.workoutType}
+              distance: trainingPlanData.distance,
+              duration: trainingPlanData.duration,
+              workoutType: trainingPlanData.workoutType}
 
               console.log(userTrainingPlanData);
               const trainingPlan = await formAPI.sendForm(userTrainingPlanData)

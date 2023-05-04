@@ -24,7 +24,9 @@ function App() {
       <NavBar user={user} setUser={setUser}/>
       <Routes>
         <Route path='/' element={ <HomePage /> }/>
-        <Route path='/trainingPlans' element={ <TrainingPlanPage /> }/>
+        <Route path='/home' element={ <HomePage /> }/>
+        <Route path='/create' element={ <TrainingPlanPage /> }/>
+        {/* <Route path='/trainingPlans' element={ <TrainingPlanPage /> }/> */}
         <Route path = '/saved'element= {<SavedPage/>}/>
         <Route path = '/edit/:id'element= {<EditPage/>}/>
       </Routes>

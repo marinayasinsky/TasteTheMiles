@@ -40,9 +40,9 @@ function SavedPage() {
               {trainingPlan.trainingPlanName}
             </h1>
             <ul>
-            <span><strong>Distance:</strong> {trainingPlan.distance}</span>
+            <span><strong>Distance (miles):</strong> {trainingPlan.distance}</span>
             <br/>
-           <span><strong>Duration:</strong> {trainingPlan.duration}</span>
+           <span><strong>Duration (minutes):</strong> {trainingPlan.duration}</span>
             <br/>
            <span><strong>Workout Type:</strong> {trainingPlan.workoutType}</span>
               
